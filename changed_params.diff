@@ -1,0 +1,44 @@
+55c55
+< StopFirstTimeAtLevel    = 14
+---
+> StopFirstTimeAtLevel    = 0
+304,305c304,305
+< grackle_data_file           = dcbh-lwb-halo-26813.h5
+< UVbackground                = 1
+---
+> grackle_data_file           = cloudy_metals_2008_3D.h5
+> UVbackground                = 0
+321c321
+< MetalCooling                   = 0
+---
+> MetalCooling                   = 1
+323c323
+< RadiativeTransfer              = 0
+---
+> RadiativeTransfer              = 1
+383c383
+< RefineByJeansLengthSafetyFactor  = 64
+---
+> RefineByJeansLengthSafetyFactor  = 4.000000
+395c395
+< ParticleSplitterIterations       = 2
+---
+> ParticleSplitterIterations       = 0
+399,402c399,402
+< ParticleSplitterCenter         =  0.54643776 0.43513759 0.49048357
+< ParticleSplitterCenterRegion         =  0.0155 0.16  # width
+< ParticleSplitterMustRefine       = 1
+< ParticleSplitterMustRefineIDFile = initial_particle_positions-26813-output_0000.h5
+---
+> ParticleSplitterCenter         =  -1 -1 -1 
+> ParticleSplitterCenterRegion         =  -1 -1 -1 -1 
+> ParticleSplitterMustRefine       = 0
+> ParticleSplitterMustRefineIDFile = (null)
+443c443
+< StarParticleCreation                  = 0
+---
+> StarParticleCreation                  = 40
+450c450
+< StarParticleFeedback                  = 0
+---
+> StarParticleFeedback                  = 40
