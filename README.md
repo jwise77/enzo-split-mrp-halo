@@ -22,6 +22,8 @@ This routine will create a sphere centered on the given halo with a radius of `r
 
 The Lagrangian region of a halo can be quite irregular.  Sometimes there are disconnected small volumes within this Lagrangian volume.  Usually these disconnected are small in fractional volume and can be ignored.  You will need to identify a bounding box for the Lagrangian volume.  Currently, Enzo only splits particles within a cube.  I have approached this in the notebook `Split-ICs.ipynb` by calculating some statistics and plotting some projections and histograms of the particles.  Here I have used the center of mass (all particles have equal mass) and manually determined the extent of the bounding box "by eye."  This Lagrangian volume center and width will be used in Enzo to split particles within this cube.
 
+**Update (10 March 2025):** I have updated Enzo to consider non-cubic particle splitting regions.  I've made some associated changes to `Split-ICs.ipynb` to remove outliers (outside of 3-sigma) from the Lagrangian region and to make it a tight 3D bounding box.  Testing on the `SG64-L2` simulation, I see good results, applying AMR to only the halo progenitors.
+
 ## Calculating the Lyman-Werner (LW) intensity at the halo
 
 * _Required:_ Star particle data in the directory `star-data/`
@@ -46,11 +48,12 @@ I have generated a diff file `changed_params.diff` between the original and modi
   * ⚠️ *NOTE: For testing purposes, leave this at 4 so that the simulations run faster* ⚠️
 * **ParticleSplitterIterations = 0 -> 2** :: Each iteration will split a particle into 13 daughter particles.  Here will have 2 iterations, so 169 split particles.
 * **ParticleSplitterCenter = x y z** :: Center of the bounding cube containing the particles that will be split
-* **ParticleSplitterCenter Region = width1 width2** :: Width of the bounding cube in the first and second iteration.  They must be of increasing width because they are nested.  I usually make it ~10% wider with each iteration.
+* **ParticleSplitterCenterRegion[dim] = width1 width2** :: Width of the bounding cube in the first and second iteration in dimension `dim`.  They must be of decreasing width because they are nested.  I usually make it ~10% wider with each iteration.
 * **ParticleSplitterMustRefine = 0 -> 1** :: Enables marking must-refine particles from a file in the following parameter
 * **ParticleSplitterMustRefineIDFile = filename** :: HDF5 filename with the positions and ID of the must refine particles. Use the file produced by `get_halo_initial_extent.py`
 * **StarParticleCreation = 40 -> 0** :: Turn off star formation
 * **StarParticleFeedback = 40 -> 0** :: Turn off stellar feedback
+* **MustRefineParticlesRefineToLevel = 2 -> 3** :: To restrict the AMR grids to the volume encompassed by the must-refine particles, we must increase this parameter to one above the innermost "zoom-in" level
 
 ## Restarting
 

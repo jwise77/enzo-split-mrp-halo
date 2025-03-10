@@ -20,25 +20,32 @@
 < RefineByJeansLengthSafetyFactor  = 64
 ---
 > RefineByJeansLengthSafetyFactor  = 4.000000
+386c386
+< MustRefineParticlesRefineToLevel = 3
+---
+> MustRefineParticlesRefineToLevel = 2
 395c395
 < ParticleSplitterIterations       = 2
 ---
 > ParticleSplitterIterations       = 0
-399,402c399,402
-< ParticleSplitterCenter         =  0.54643776 0.43513759 0.49048357
-< ParticleSplitterCenterRegion         =  0.0155 0.16  # width
+399,405c399,402
+< # Original width = [0.06477198 0.09461771 0.05667623]
+< ParticleSplitterCenter         =  0.549565980 0.447100099 0.492108187
+< ParticleSplitterCenterRegion[0] = 0.078125 0.065772
+< ParticleSplitterCenterRegion[1] = 0.109375 0.095618
+< ParticleSplitterCenterRegion[2] = 0.062500 0.057676
 < ParticleSplitterMustRefine       = 1
-< ParticleSplitterMustRefineIDFile = initial_particle_positions-26813-output_0000.h5
+< ParticleSplitterMustRefineIDFile = initial_particle_positions-26813-output_0000-no-outliers.h5
 ---
 > ParticleSplitterCenter         =  -1 -1 -1 
 > ParticleSplitterCenterRegion         =  -1 -1 -1 -1 
 > ParticleSplitterMustRefine       = 0
 > ParticleSplitterMustRefineIDFile = (null)
-443c443
+446c443
 < StarParticleCreation                  = 0
 ---
 > StarParticleCreation                  = 40
-450c450
+453c450
 < StarParticleFeedback                  = 0
 ---
 > StarParticleFeedback                  = 40
